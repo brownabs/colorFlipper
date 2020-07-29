@@ -87,57 +87,26 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
-const colorMixer = () => {
-  //need to use Math.floor to make Math.random into a integer(whole number)
-  let randomColor = "";
-  const randomColorId = Math.floor(Math.random() * colors.length);
+const createBackgroundColor = (e) => {
+
+
+  const randomColorId = Math.ceil(Math.random() * colors.length);
   for (i = 0; i < colors.length; i++) {
-    if (colors[i].id === randomColorId) randomColor = colors[i];
-  }
-  return randomColor;
-};
-
-// let currentBackgroundColor = '';
-
-const handleButtonClick = (e) => {
-  let buttonId = e.target.id;
-  let currentBackgroundColor = {};
-
-  if (buttonId === "home") {
-    let currentBackgroundColor = colorMixer();
-    let color = {
-      name: currentBackgroundColor.name,
-      hexCode: currentBackgroundColor.hexCode,
-    };
-    document.querySelector("body").style.backgroundColor =
-      currentBackgroundColor.hexCode;
-    return color;
-  } else if (buttonId === "simple-mode") {
-    console.log("simple");
-    let selectedDiv = document.querySelector("#simpleDisplay").id;
-    let domString = `<h1>This background color is ${currentBackgroundColor.name}</h1>`;
-    printToDom(selectedDiv, domString);
-  }
-  if (buttonId === "hex-mode") {
-    console.log("hex");
-    let selectedDiv = document.querySelector("#hexDisplay").id;
-    let domString = `<h1>This background hexcode is ${currentBackgroundColor.hexCode} </h1>`;
-    printToDom(selectedDiv, domString);
+    if (colors[i].id === randomColorId) {
+      document.querySelector("body").style.backgroundColor = colors[i].hexCode;
+      document.querySelector("#nameDisplay").innerHTML = colors[i].name;
+      document.querySelector("#colorDisplay").innerHTML = colors[i].hexCode;
+    }
   }
 };
 
-const buttonEvent = () => {
-  document
-    .querySelector(".mode-buttons")
-    .addEventListener("click", handleButtonClick);
-};
 
 const homebuttonEvent = () => {
-  document.querySelector("#home").addEventListener("click", handleButtonClick);
+  document.querySelector("#home").addEventListener("click", createBackgroundColor);
 };
 
+
 const init = () => {
-  buttonEvent();
   homebuttonEvent();
 };
 
