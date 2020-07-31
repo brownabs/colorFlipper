@@ -26,7 +26,7 @@ const colors = [
   },
   {
     id: 6,
-    name: "  Lim",
+    name: "Lime",
     hexCode: "#00FF00",
   },
   {
